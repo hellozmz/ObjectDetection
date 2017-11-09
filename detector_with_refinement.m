@@ -9,7 +9,7 @@ if(~exist('timestamp')||(~exist('stack_of_loc')))
     %% paths to libraries, that needs to be installed
     addpath('/Users/zmz/Desktop/BUPT/code/lib_Mac/sqb-0.1/');
     addpath(genpath('/Users/zmz/Desktop/BUPT/code/lib_Mac/toolbox-master/'));
-    addpath(genpath('/Users/zmz/Desktop/BUPT/code/lib_Mac/vlfeat-0.9.20/'));
+    addpath(genpath('/Users/zmz/Desktop/BUPT/code/lib_Mac/vlfeat/'));
 
     load('./_mc_reg/drones/motion_regressor_10-Sep-2014.mat');
     % reducing the number of trees to speed up (normal size is 30000 trees)
@@ -144,6 +144,9 @@ end
     
 data_name = strcat('refinement_for_detection_',video_number,'_',ml_type,'_',num2str(si),'_',num2str(st));
 
+
+
+starttime=cputime;        % 程序开始运行时的cpu时间
 
 %% variables
 [di,dj,len_vid] = size(Iroi);
@@ -458,3 +461,5 @@ for t = start:ceil(st*time_step):(len_vid-st-1)
 end
 
 fprintf('\n');
+endtime=cputime-starttime        % 计算程序运行所用的时间
+
